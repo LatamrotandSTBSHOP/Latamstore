@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "nombre": "100 Diamantes",
+        "precio": 18
+    },
+    {
+        "id": 2,
+        "nombre": "341 Diamantes",
+        "precio": 50
+    },
+    {
+        "id": 3,
+        "nombre": "571 Diamantes",
+        "precio": 85
+    }
+]
