@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Free Fire - LATAM STORE</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<title>Comprar Free Fire - LATAM STORE</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-    <h1>Recargas Free Fire</h1>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="freefire.html">Free Fire</a>
-        <a href="pago.html">Métodos de Pago</a>
-        <a href="login.html">Admin</a>
-    </nav>
-</header>
+<h1>Diamantes Free Fire</h1>
+<p>Selecciona tu paquete y procede al pago.</p>
 
-<section>
-    <h2 style="
-        text-align:center;
-        color:#ff00ff;
-        margin-top:30px;
-        text-shadow:0px 0px 12px #ff00ff;
-        font-size:28px;">
-        Selecciona tu paquete de diamantes 💎
-    </h2>
-</section>
+<div id="productos" class="lista-productos"></div>
 
-<section id="lista-productos" class="productos">
-    <!-- Aquí se cargan los productos automáticamente -->
-</section>
+<script>
+async function cargarProductos() {
+    try {
+        const response = await fetch("productos.json");
+        const productos = await response.json();
+
+        const contenedor = document.getElementById("productos");
+        contenedor.innerHTML = "";
+
+        productos.forEach(p => {
+            contenedor.innerHTML += `
+                <div class="producto">
+                    <h3>${p.nombre}</h3>
+                    <p>Precio: $${p.precio} MXN</p>
+                    <a class="btn" href="pago.html?producto=${encodeURIComponent(p.nombre)}&precio=${p.precio}">
+                        Comprar
+                    </a>
+                </div>
+            `;
+        });
+
+    } catch (error) {
+        console.error("Error cargando productos:", error);
+    }
+}
+
+cargarProductos();
+</script>
 
 </body>
 </html>
